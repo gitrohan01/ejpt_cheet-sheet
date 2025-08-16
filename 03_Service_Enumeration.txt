@@ -1,0 +1,59 @@
+⚙️ Service Enumeration (15%)
+
+📘 Focus:
+- Manual and automated service interaction
+
+🛠️ Tools/Commands:
+- ftp <target>
+- smbclient -L //<target> -U anonymous
+- enum4linux <target>
+- netcat (nc) <target> <port>
+- telnet <target> <port>
+
+
+1. Port & Service Detection:
+nmap -sC -sV -T4 <target>          # Default scripts + version detection
+nmap -p- <target>                  # Full port scan (1-65535)
+nmap -A <target>                   # Aggressive scan (OS + services + traceroute)
+
+
+2. SMB Enumeration (Ports 139/445):
+enum4linux <target>                        # Basic SMB enum
+smbclient -L //<target>/ -N                # List shares anonymously
+smbmap -H <target>                         # List shares + permissions
+rpcclient -U "" <target>                   # Manual enum: `enumdomusers`, `enumalsgroups`
+
+
+3. Web Services (Port 80, 443, etc.):
+curl -I http://<target>                   # Grab HTTP headers
+whatweb http://<target>                   # Web fingerprinting
+nikto -h http://<target>                  # Web vulnerability scanner
+gobuster dir -u http://<target>/ -w /usr/share/wordlists/dirb/common.txt
+
+
+4.FTP Enumeration (Port 21):
+ftp <target>                              # Try: username = anonymous
+nmap -p 21 --script ftp-anon,ftp-syst <target>
+
+
+5.SSH Enumeration (Port 22):
+nmap -p 22 --script ssh-hostkey,ssh2-enum-algos <target>
+
+
+6. SNMP Enumeration (Port 161/UDP):
+snmpwalk -v2c -c public <target>
+onesixtyone -c wordlist.txt <target>
+
+
+7.DNS(port 53):
+nslookup <domain>
+dig <domain> any
+host <domain>
+
+8.mysql(3306):
+nmap -p 3306 --script mysql-info <target>
+mysql -h <target> -u root -p        # Try known creds if found
+
+
+
+nmap -p 445 --script smb-enum-shares,smb-enum-users <target>

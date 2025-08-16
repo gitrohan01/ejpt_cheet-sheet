@@ -1,0 +1,15 @@
+🛰️ Networking Basics (15%)
+
+📘 Focus:
+- OSI Model (Layers 1–7)
+- TCP/IP Model
+- Protocols: ICMP, DNS, HTTP, FTP, SSH
+
+🛠️ Tools/Commands:
+- ping <host>
+- traceroute <host> (Linux) / tracert <host> (Windows)
+- nslookup <domain>
+- dig <domain>
+- whois <domain>
+- netstat -tulnp
+- curl <URL>

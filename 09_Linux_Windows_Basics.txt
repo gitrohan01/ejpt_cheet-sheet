@@ -1,0 +1,18 @@
+🐧 Linux/Windows Basics (5%)
+
+📘 Focus:
+- Basic OS commands and enumeration
+
+🛠️ Linux Commands:
+- whoami
+- id
+- ls -la
+- cat /etc/passwd
+- sudo -l
+
+🛠️ Windows Commands:
+- whoami
+- net user
+- systeminfo
+- dir
+- ipconfig /all

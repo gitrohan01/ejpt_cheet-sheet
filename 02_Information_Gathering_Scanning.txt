@@ -1,0 +1,122 @@
+🔍 Information Gathering & Scanning (20%)
+
+📘 Focus:
+- Finding open ports, services, and banners
+
+🛠️ Tools/Commands:
+- nmap -sS -sV -Pn <target>
+- nmap -p- -A <target>
+- gobuster dir -u http://<target> -w wordlist.txt
+- whatweb <target>
+- dig <domain>
+- whois <domain>
+
+
+
+basic nmap:
+nmap -sS -Pn -T4 <target>
+nmap -sV -sC <target>        # Default scripts & version detection
+nmap -A <target>             # Aggressive: OS, version, scripts, traceroute
+nmap -p- <target>            # Scan all 65535 ports
+
+
+service specific:
+nmap -p 21,22,80,443,445,139,3306 -sV <target>
+
+
+OS & User Enumeration (Linux/Windows):
+uname -a
+cat /etc/*release*
+whoami && id
+users
+w
+last
+cat /etc/passwd
+cat /etc/shadow     # (if root)
+sudo -l
+ps aux
+
+Windows (via CMD or PowerShell):
+systeminfo
+whoami /all
+net user
+net localgroup
+net group /domain
+tasklist
+
+
+SMB enumeration:
+nmap --script smb-enum-shares,smb-enum-users -p 139,445 <target>
+enum4linux <target>
+smbclient -L //<target>/ -N
+smbmap -H <target>
+rpcclient -U "" <target>     # Then use: enumdomusers, enumalsgroups etc.
+
+HTTP/Web Enumeration:
+whatweb <target>
+nikto -h <target>
+gobuster dir -u http://<target> -w /usr/share/wordlists/dirb/common.txt
+ffuf -u http://<target>/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+curl -I <target>             # HTTP headers
+
+
+FTP enumeration:
+nmap -p 21 --script ftp-anon,ftp-bounce,ftp-syst <target>
+ftp <target>
+
+
+
+SSH enumeration:
+nmap -p 22 --script ssh2-enum-algos,ssh-hostkey <target>
+hydra -l root -P rockyou.txt ssh://<target>
+
+
+
+SNMP enumeration:
+snmpwalk -v2c -c public <target>
+snmp-check <target>
+onesixtyone -c community.txt <target>
+
+
+DNS enumeration:
+nslookup <target>
+dig <target> any
+dig axfr @<domain> <target>   # Zone transfer (if allowed)
+dnsrecon -d <domain>
+fierce -dns <domain>
+
+
+LDAP Enumeration:
+nmap -p 389 --script ldap-search,ldap-rootdse <target>
+ldapsearch -x -h <target> -s base
+
+
+MySQL/PostgreSQL Enumeration:
+nmap -p 3306 --script mysql-enum <target>
+mysql -u root -h <target> -p
+
+
+PostgreSQL:
+nmap -p 5432 --script pgsql-brute <target>
+
+
+RDP enumeration:
+nmap -p 3389 --script rdp-enum-encryption <target>
+
+banner grabing:
+(netcat):
+nc -nv <target> 80
+
+(telnet):
+telnet <target> 80
+
+
+(wget and curl for downloading content):
+wget http://<target>/file
+curl http://<target>/file
+
+
+
+
+
+

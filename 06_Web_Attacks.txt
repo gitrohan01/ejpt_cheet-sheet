@@ -1,0 +1,12 @@
+🌐 Web Attacks (10%)
+
+📘 Focus:
+- XSS, LFI, file upload bypass
+
+🛠️ Tools/Commands:
+- gobuster dir -u http://<target> -w wordlist.txt
+- curl -X POST http://<target> -d "input=test"
+- Common payloads:
+  XSS: <script>alert(1)</script>
+  LFI: ../../../../etc/passwd
+- Optional: Burp Suite for intercepting HTTP

